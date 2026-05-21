@@ -1,0 +1,71 @@
+---
+import { projects } from '../config/site';
+---
+
+<section class="section" id="projects">
+	<div class="container">
+		<h2 class="section-title">项目展示</h2>
+		<p class="section-desc">个人实践与工具搭建记录，持续更新中</p>
+		<div class="projects-grid">
+			{
+				projects.map((project) => (
+					<a href={project.href} class="project-card">
+						<span class="tag">{project.tag}</span>
+						<h3 class="project-title">{project.title}</h3>
+						<p class="project-desc">{project.description}</p>
+						<span class="project-link">阅读详情 →</span>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.project-card {
+		display: flex;
+		flex-direction: column;
+		padding: 1.5rem;
+		color: inherit;
+		text-decoration: none;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		transition: all 0.25s ease;
+	}
+
+	.project-card:hover {
+		border-color: rgba(56, 189, 248, 0.4);
+		transform: translateY(-3px);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+		color: inherit;
+	}
+
+	.project-title {
+		margin: 0.75rem 0 0.5rem;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: var(--text);
+	}
+
+	.project-desc {
+		flex: 1;
+		margin: 0;
+		font-size: 0.9rem;
+		color: var(--text-muted);
+		line-height: 1.6;
+	}
+
+	.project-link {
+		margin-top: 1rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--accent);
+	}
+</style>

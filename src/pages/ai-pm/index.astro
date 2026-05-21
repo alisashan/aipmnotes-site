@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PostList from '../../components/PostList.astro';
+import { getPublishedPosts } from '../../utils/blog';
+
+const posts = (await getPublishedPosts()).filter((p) => p.data.category === 'ai-pm');
+---
+
+<BaseLayout title="AI产品经理" description="AI 产品设计、需求分析与产品方法实践">
+	<PageHeader
+		title="AI产品经理"
+		description="AI 时代的产品思维、需求分析与 PRD 实践"
+	/>
+	<section class="section" style="padding-top: 2rem;">
+		<div class="container">
+			<PostList posts={posts} emptyMessage="该分类暂无文章。" />
+		</div>
+	</section>
+</BaseLayout>

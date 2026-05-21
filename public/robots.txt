@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aipmnotes.com/sitemap-index.xml

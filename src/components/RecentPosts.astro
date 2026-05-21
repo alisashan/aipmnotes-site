@@ -1,0 +1,48 @@
+---
+import type { BlogPost } from '../utils/blog';
+import PostCard from './PostCard.astro';
+
+interface Props {
+	posts: BlogPost[];
+	limit?: number;
+}
+
+const { posts, limit = 5 } = Astro.props;
+const recent = posts.slice(0, limit);
+---
+
+<section class="section" id="posts">
+	<div class="container">
+		<div class="section-head">
+			<div>
+				<h2 class="section-title">最近文章</h2>
+				<p class="section-desc">产品思考、AI 实践与技术分享</p>
+			</div>
+			<a href="/blog/" class="btn btn-ghost">全部文章</a>
+		</div>
+		<div class="posts-grid">
+			{recent.map((post) => <PostCard post={post} />)}
+		</div>
+	</div>
+</section>
+
+<style>
+	.section-head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.section-head .section-desc {
+		margin-bottom: 0;
+	}
+
+	.posts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1.25rem;
+	}
+</style>

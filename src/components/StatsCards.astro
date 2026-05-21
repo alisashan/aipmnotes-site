@@ -1,0 +1,72 @@
+---
+import { stats } from '../config/site';
+
+interface Props {
+	counts: Record<(typeof stats)[number]['key'], number>;
+}
+
+const { counts } = Astro.props;
+---
+
+<section class="section stats-section">
+	<div class="container">
+		<div class="stats-grid">
+			{
+				stats.map((item) => (
+					<article class="stat-card">
+						<span class="stat-value">{counts[item.key]}</span>
+						<span class="stat-label">{item.label}</span>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.stats-section {
+		padding-top: 0;
+		padding-bottom: 2rem;
+	}
+
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+	}
+
+	.stat-card {
+		padding: 1.5rem 1.25rem;
+		text-align: center;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.stat-card:hover {
+		border-color: rgba(56, 189, 248, 0.35);
+		box-shadow: 0 0 32px var(--accent-soft);
+	}
+
+	.stat-value {
+		display: block;
+		margin-bottom: 0.35rem;
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: var(--accent);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.stat-label {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+	}
+
+	@media (max-width: 768px) {
+		.stats-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+</style>

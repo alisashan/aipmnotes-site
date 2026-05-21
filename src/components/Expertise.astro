@@ -1,0 +1,41 @@
+---
+import { expertise } from '../config/site';
+---
+
+<section class="section" id="expertise">
+	<div class="container">
+		<h2 class="section-title">擅长领域</h2>
+		<p class="section-desc">聚焦 AI 产品实践与跨境业务场景，从需求到落地的全链路能力</p>
+		<ul class="expertise-list">
+			{expertise.map((item) => <li class="expertise-tag">{item}</li>)}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.expertise-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.expertise-tag {
+		padding: 0.55rem 1rem;
+		font-size: 0.9rem;
+		font-weight: 500;
+		color: var(--text);
+		background: var(--bg-elevated);
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		transition: all 0.2s ease;
+	}
+
+	.expertise-tag:hover {
+		border-color: var(--accent);
+		background: var(--accent-soft);
+		color: var(--accent);
+	}
+</style>

@@ -1,46 +1,40 @@
-# Astro Starter Kit: Basics
+# AI PM Notes
 
-```sh
-npm create astro@latest -- --template basics
+中文个人博客静态站，域名 [aipmnotes.com](https://aipmnotes.com)。
+
+记录 AI 产品经理的工具、方法、案例、Agent、工作流与个人项目。
+
+## 开发
+
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # 输出 dist/，可部署到任意静态托管
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 写文章
 
-## 🚀 Project Structure
+在 `src/content/blog/` 新建 Markdown，frontmatter 示例：
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```yaml
+---
+title: 文章标题
+description: 摘要
+pubDate: 2026-05-20
+category: ai-pm          # ai-pm | vibe-coding | ai-workflow | analysis
+tags: [标签1, 标签2]
+draft: false
+---
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 部署
 
-## 🧞 Commands
+构建后将 `dist/` 目录上传至 Cloudflare Pages、Vercel、Netlify 等，并绑定域名 `aipmnotes.com`。
 
-All commands are run from the root of the project, from a terminal:
+## 结构
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `src/pages/` — 页面路由
+- `src/content/blog/` — Markdown 文章
+- `src/components/` — 首页与通用组件
+- `src/config/site.ts` — 导航、项目、站点信息

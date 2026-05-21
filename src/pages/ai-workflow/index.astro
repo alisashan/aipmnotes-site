@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PostList from '../../components/PostList.astro';
+import { getPublishedPosts } from '../../utils/blog';
+
+const posts = (await getPublishedPosts()).filter((p) => p.data.category === 'ai-workflow');
+---
+
+<BaseLayout title="AI工作流" description="Agent、自动化与产品工作流案例">
+	<PageHeader title="AI工作流" description="从需求到交付的自动化流水线与 Agent 实践" />
+	<section class="section" style="padding-top: 2rem;">
+		<div class="container">
+			<PostList posts={posts} emptyMessage="该分类暂无文章。" />
+		</div>
+	</section>
+</BaseLayout>

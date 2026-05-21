@@ -1,0 +1,98 @@
+---
+import { site } from '../config/site';
+---
+
+<section class="section about-section" id="about">
+	<div class="container">
+		<div class="about-card">
+			<div class="about-content">
+				<h2 class="section-title">关于我</h2>
+				<p class="about-lead">
+					我是 <strong>{site.author}</strong>，一名正在用 AI 重构产品经理工作流的实践者。
+				</p>
+				<p class="about-text">
+					专注 AI 产品设计、需求分析与自动化工作流，在跨境电商与供应链场景中探索 Agent
+					与 Vibe Coding 的落地方式。本站记录我的工具选型、方法沉淀、案例拆解与个人项目进展。
+				</p>
+				<a href="/about/" class="btn btn-ghost">了解更多</a>
+			</div>
+			<div class="about-visual" aria-hidden="true">
+				<div class="avatar-ring">
+					<span class="avatar-initial">W</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.about-card {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 2.5rem;
+		align-items: center;
+		padding: 2.5rem;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+	}
+
+	.about-lead {
+		margin: 0 0 1rem;
+		font-size: 1.15rem;
+		color: var(--text);
+		line-height: 1.7;
+	}
+
+	.about-lead strong {
+		color: var(--accent);
+	}
+
+	.about-text {
+		margin: 0 0 1.5rem;
+		color: var(--text-muted);
+		line-height: 1.75;
+	}
+
+	.about-visual {
+		display: flex;
+		justify-content: center;
+	}
+
+	.avatar-ring {
+		display: grid;
+		place-items: center;
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+		background: linear-gradient(135deg, var(--accent-soft), transparent);
+		border: 2px solid var(--border);
+		box-shadow: 0 0 48px var(--accent-soft);
+	}
+
+	.avatar-initial {
+		font-size: 2.5rem;
+		font-weight: 800;
+		color: var(--accent);
+	}
+
+	@media (max-width: 768px) {
+		.about-card {
+			grid-template-columns: 1fr;
+			padding: 1.75rem;
+		}
+
+		.about-visual {
+			order: -1;
+		}
+
+		.avatar-ring {
+			width: 88px;
+			height: 88px;
+		}
+
+		.avatar-initial {
+			font-size: 2rem;
+		}
+	}
+</style>

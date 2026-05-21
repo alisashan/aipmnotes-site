@@ -1,0 +1,40 @@
+---
+import type { BlogPost } from '../utils/blog';
+import PostCard from './PostCard.astro';
+
+interface Props {
+	posts: BlogPost[];
+	emptyMessage?: string;
+}
+
+const { posts, emptyMessage = '暂无文章，敬请期待。' } = Astro.props;
+---
+
+{
+	posts.length > 0 ? (
+		<div class="posts-grid">
+			{posts.map((post) => (
+				<PostCard post={post} />
+			))}
+		</div>
+	) : (
+		<p class="empty">{emptyMessage}</p>
+	)
+}
+
+<style>
+	.posts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.empty {
+		padding: 3rem;
+		text-align: center;
+		color: var(--text-muted);
+		background: var(--surface);
+		border: 1px dashed var(--border);
+		border-radius: var(--radius-lg);
+	}
+</style>

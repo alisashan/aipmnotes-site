@@ -1,0 +1,95 @@
+---
+import { site } from '../config/site';
+---
+
+<section class="hero">
+	<div class="container hero-inner">
+		<div class="hero-badge">aipmnotes.com</div>
+		<h1 class="hero-title">{site.name}</h1>
+		<p class="hero-subtitle">用 AI 重新定义产品经理的工作方式</p>
+		<p class="hero-desc">
+			记录 AI 产品经理的工具、方法、案例、Agent、工作流与个人项目。
+		</p>
+		<div class="hero-actions">
+			<a href="/blog/" class="btn btn-primary">查看文章</a>
+			<a href="/#projects" class="btn btn-ghost">查看项目</a>
+		</div>
+	</div>
+	<div class="hero-grid" aria-hidden="true"></div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		padding: 5rem 0 4rem;
+		overflow: hidden;
+	}
+
+	.hero-inner {
+		position: relative;
+		z-index: 1;
+		max-width: 720px;
+	}
+
+	.hero-badge {
+		display: inline-block;
+		margin-bottom: 1.25rem;
+		padding: 0.35rem 0.85rem;
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		color: var(--accent);
+		background: var(--accent-soft);
+		border: 1px solid var(--border);
+		border-radius: 999px;
+	}
+
+	.hero-title {
+		margin: 0 0 0.75rem;
+		font-size: clamp(2.5rem, 6vw, 3.75rem);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.1;
+		background: linear-gradient(135deg, #f8fafc 30%, #38bdf8);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hero-subtitle {
+		margin: 0 0 1rem;
+		font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+		font-weight: 600;
+		color: var(--text);
+	}
+
+	.hero-desc {
+		margin: 0 0 2rem;
+		font-size: 1.05rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.hero-grid {
+		position: absolute;
+		inset: 0;
+		background-image:
+			linear-gradient(var(--border) 1px, transparent 1px),
+			linear-gradient(90deg, var(--border) 1px, transparent 1px);
+		background-size: 48px 48px;
+		mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent);
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	@media (max-width: 768px) {
+		.hero {
+			padding: 3.5rem 0 2.5rem;
+		}
+	}
+</style>

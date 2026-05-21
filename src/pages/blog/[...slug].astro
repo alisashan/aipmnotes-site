@@ -1,0 +1,114 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categoryLabels, formatDate } from '../../utils/blog';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog', ({ data }) => !data.draft);
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+	<article class="article">
+		<header class="article-header container">
+			<a href="/blog/" class="back-link">← 返回文章列表</a>
+			<div class="article-meta">
+				<span class="tag">{categoryLabels[post.data.category]}</span>
+				<time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+			</div>
+			<h1>{post.data.title}</h1>
+			<p class="article-desc">{post.data.description}</p>
+			{
+				post.data.tags.length > 0 && (
+					<ul class="article-tags">
+						{post.data.tags.map((tag) => (
+							<li>{tag}</li>
+						))}
+					</ul>
+				)
+			}
+		</header>
+		<div class="container article-body prose">
+			<Content />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.article {
+		padding-bottom: 4rem;
+	}
+
+	.article-header {
+		padding: 2.5rem 0 2rem;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.back-link {
+		display: inline-block;
+		margin-bottom: 1.25rem;
+		font-size: 0.875rem;
+		color: var(--text-muted);
+	}
+
+	.back-link:hover {
+		color: var(--accent);
+	}
+
+	.article-meta {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.article-meta time {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+	}
+
+	.article-header h1 {
+		margin: 0 0 0.75rem;
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		font-weight: 800;
+		line-height: 1.25;
+		letter-spacing: -0.03em;
+	}
+
+	.article-desc {
+		margin: 0;
+		font-size: 1.05rem;
+		color: var(--text-muted);
+		line-height: 1.65;
+		max-width: 720px;
+	}
+
+	.article-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 1.25rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.article-tags li {
+		padding: 0.25rem 0.65rem;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+		background: var(--bg-elevated);
+		border-radius: 6px;
+	}
+
+	.article-body {
+		padding: 2.5rem 0;
+		max-width: 720px;
+	}
+</style>

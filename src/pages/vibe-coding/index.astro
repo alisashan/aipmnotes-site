@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PostList from '../../components/PostList.astro';
+import { getPublishedPosts } from '../../utils/blog';
+
+const posts = (await getPublishedPosts()).filter((p) => p.data.category === 'vibe-coding');
+---
+
+<BaseLayout title="Vibe Coding" description="用 AI 辅助编码的个人项目与搭建记录">
+	<PageHeader title="Vibe Coding" description="快速原型、个人项目与 AI 结对编程实践" />
+	<section class="section" style="padding-top: 2rem;">
+		<div class="container">
+			<PostList posts={posts} emptyMessage="该分类暂无文章。" />
+		</div>
+	</section>
+</BaseLayout>

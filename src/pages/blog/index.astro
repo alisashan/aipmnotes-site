@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PostList from '../../components/PostList.astro';
+import { getPublishedPosts } from '../../utils/blog';
+
+const posts = await getPublishedPosts();
+---
+
+<BaseLayout title="文章" description="AI PM Notes 全部文章列表">
+	<PageHeader title="文章" description="工具、方法、案例与工作流实践记录" />
+	<section class="section" style="padding-top: 2rem;">
+		<div class="container">
+			<PostList posts={posts} />
+		</div>
+	</section>
+</BaseLayout>

@@ -1,11 +1,22 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatsCards from '../components/StatsCards.astro';
+import Expertise from '../components/Expertise.astro';
+import Projects from '../components/Projects.astro';
+import RecentPosts from '../components/RecentPosts.astro';
+import AboutSection from '../components/AboutSection.astro';
+import { getPublishedPosts, getStats } from '../utils/blog';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts = await getPublishedPosts();
+const counts = await getStats();
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+	<Hero />
+	<StatsCards counts={counts} />
+	<Expertise />
+	<Projects />
+	<RecentPosts posts={posts} />
+	<AboutSection />
+</BaseLayout>

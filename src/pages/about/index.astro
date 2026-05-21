@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { site } from '../../config/site';
+import { expertise } from '../../config/site';
+---
+
+<BaseLayout title="关于" description={`关于 ${site.author} 与 AI PM Notes`}>
+	<PageHeader title="关于我" description="AI 产品经理 · 工作流实践者" />
+	<section class="section" style="padding-top: 2rem;">
+		<div class="container about-page">
+			<div class="about-block">
+				<p class="lead">
+					我是 <strong>{site.author}</strong>，一名正在用 AI 重构产品经理工作流的实践者。
+				</p>
+				<p>
+					本站 <strong>AI PM Notes</strong>（<a href={site.domain}>aipmnotes.com</a>）记录我在 AI
+					产品设计、需求分析、PRD 撰写、Agent 搭建与 Vibe Coding 方面的探索。内容涵盖工具评测、方法总结、案例拆解与个人项目实践。
+				</p>
+				<p>
+					我有跨境电商与供应链系统相关的产品经验，关注如何用自动化工作流提升产品团队的交付效率，并把 AI 嵌入从调研、原型到文档的日常工作流中。
+				</p>
+			</div>
+			<div class="about-block">
+				<h2>关注方向</h2>
+				<ul class="expertise-inline">
+					{expertise.map((item) => <li>{item}</li>)}
+				</ul>
+			</div>
+			<div class="about-block">
+				<h2>联系我</h2>
+				<p>欢迎通过本站文章留言或你的常用渠道交流 AI 产品与工作流相关话题。</p>
+			</div>
+			<a href="/" class="btn btn-ghost">返回首页</a>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.about-page {
+		max-width: 720px;
+	}
+
+	.about-block {
+		margin-bottom: 2rem;
+	}
+
+	.about-block h2 {
+		margin: 0 0 0.75rem;
+		font-size: 1.15rem;
+		color: var(--text);
+	}
+
+	.lead {
+		font-size: 1.15rem;
+		color: var(--text);
+		line-height: 1.7;
+	}
+
+	.lead strong {
+		color: var(--accent);
+	}
+
+	.about-page p {
+		color: var(--text-muted);
+		line-height: 1.75;
+	}
+
+	.expertise-inline {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.expertise-inline li {
+		padding: 0.4rem 0.85rem;
+		font-size: 0.875rem;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		color: var(--text-muted);
+	}
+</style>

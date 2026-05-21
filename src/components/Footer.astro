@@ -1,0 +1,54 @@
+---
+import { site } from '../config/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<div class="container footer-inner">
+		<div class="footer-brand">
+			<strong>{site.name}</strong>
+			<p>AI 产品经理的工具、方法、案例与工作流笔记</p>
+		</div>
+		<p class="footer-copy">
+			© {year} {site.author} · <a href={site.domain}>aipmnotes.com</a>
+		</p>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		margin-top: 4rem;
+		padding: 2.5rem 0;
+		border-top: 1px solid var(--border);
+		background: var(--bg-elevated);
+	}
+
+	.footer-inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 1.5rem;
+	}
+
+	.footer-brand strong {
+		display: block;
+		margin-bottom: 0.35rem;
+		font-size: 0.95rem;
+	}
+
+	.footer-brand p,
+	.footer-copy {
+		margin: 0;
+		font-size: 0.85rem;
+		color: var(--text-muted);
+	}
+
+	.footer-copy a {
+		color: var(--text-muted);
+	}
+
+	.footer-copy a:hover {
+		color: var(--accent);
+	}
+</style>

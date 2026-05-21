@@ -1,0 +1,176 @@
+---
+import { nav, site } from '../config/site';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+	<div class="container header-inner">
+		<a href="/" class="logo">
+			<span class="logo-mark">AI</span>
+			<span class="logo-text">{site.name}</span>
+		</a>
+		<nav class="nav" aria-label="主导航">
+			{
+				nav.map((item) => {
+					const isActive =
+						item.href === '/'
+							? currentPath === '/'
+							: currentPath.startsWith(item.href);
+					return (
+						<a href={item.href} class:list={['nav-link', { active: isActive }]}>
+							{item.label}
+						</a>
+					);
+				})
+			}
+		</nav>
+		<button class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+</header>
+
+<script>
+	const toggle = document.querySelector('.menu-toggle');
+	const nav = document.querySelector('.nav');
+	toggle?.addEventListener('click', () => {
+		const open = nav?.classList.toggle('open');
+		toggle.setAttribute('aria-expanded', String(!!open));
+	});
+	nav?.querySelectorAll('a').forEach((link) => {
+		link.addEventListener('click', () => {
+			nav.classList.remove('open');
+			toggle?.setAttribute('aria-expanded', 'false');
+		});
+	});
+</script>
+
+<style>
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		height: var(--header-h);
+		background: rgba(7, 11, 18, 0.85);
+		backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--border);
+	}
+
+	.header-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 100%;
+		gap: 1.5rem;
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		color: var(--text);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.logo:hover {
+		color: var(--text);
+	}
+
+	.logo-mark {
+		display: grid;
+		place-items: center;
+		width: 2rem;
+		height: 2rem;
+		font-size: 0.7rem;
+		font-weight: 800;
+		letter-spacing: -0.05em;
+		color: #041018;
+		background: linear-gradient(135deg, #38bdf8, #22d3ee);
+		border-radius: 8px;
+	}
+
+	.logo-text {
+		font-size: 1rem;
+		letter-spacing: -0.02em;
+	}
+
+	.nav {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	.nav-link {
+		padding: 0.45rem 0.75rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--text-muted);
+		border-radius: 8px;
+		transition: all 0.2s ease;
+	}
+
+	.nav-link:hover,
+	.nav-link.active {
+		color: var(--text);
+		background: var(--accent-soft);
+	}
+
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		background: transparent;
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		cursor: pointer;
+	}
+
+	.menu-toggle span {
+		display: block;
+		width: 18px;
+		height: 2px;
+		margin: 0 auto;
+		background: var(--text);
+		border-radius: 1px;
+	}
+
+	@media (max-width: 900px) {
+		.menu-toggle {
+			display: flex;
+		}
+
+		.nav {
+			position: fixed;
+			top: var(--header-h);
+			left: 0;
+			right: 0;
+			flex-direction: column;
+			align-items: stretch;
+			padding: 1rem;
+			background: var(--bg-elevated);
+			border-bottom: 1px solid var(--border);
+			transform: translateY(-100%);
+			opacity: 0;
+			pointer-events: none;
+			transition: transform 0.25s ease, opacity 0.25s ease;
+		}
+
+		.nav.open {
+			transform: translateY(0);
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		.nav-link {
+			padding: 0.75rem 1rem;
+		}
+	}
+</style>
