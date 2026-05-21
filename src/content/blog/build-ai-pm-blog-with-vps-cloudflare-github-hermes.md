@@ -2,6 +2,7 @@
 title: 从 0 到 1 搭建 AI 产品经理个人博客：Cloudflare + VPS + GitHub + Hermes
 description: 记录我搭建 aipmnotes.com 的全过程，包括域名选择、VPS 配置、Nginx 部署、GitHub Actions 自动化和 Hermes AI 集成。
 pubDate: 2026-05-21
+category: vibe-coding
 tags: [VPS, Cloudflare, Nginx, GitHub Actions, Hermes, AI产品经理]
 draft: false
 ---
